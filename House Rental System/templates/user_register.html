@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USER_REGISTER</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.146);
+      background-image: url(static/pexels-pixabay-280232.jpg); 
+      background-size: cover;
+      background-position: center;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); 
+      z-index: -1;
+    }
+
+    .card {
+      background-color: #ffffff;
+      width: 500px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 48px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      
+    }
+
+    .card-header {
+      background-image: linear-gradient(to right, #04AA6D, #04AA6D 50%, #04AA6D 100%);
+      color: white;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    p.msg {
+      color: red;
+      font-size: 12px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #04AA6D;
+    }
+
+    @media screen and (max-width: 500px) {
+      .card {
+        width: 100%;
+      }
+    }
+    label {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+}
+
+/* input[type="text"], input[type="password"] {
+  display: block;
+  width: 80%;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  margin-right: 10px;
+} */
+
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="card">
+    <div class="card-header">
+      User Register
+    </div>
+    <div class="card-body">
+        <form action="/user_register" method="POST">
+           
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+            <label for="age">Age:</label>
+            <input type="text" name="age" id="age" required>
+            <label for="number">Contect Info:</label>
+            <input type="text" name="number" id="number" required>
+            <label for="employment">Employed:</label>
+            <input type="checkbox" name="employment" id="employment" value="1">
+            <label for="marital">Marital Status:</label>
+            <input type="checkbox" name="marital" id="marital" value="1">
+            <input type="submit" value="Register">
+          </form>
+          <h5>{{msg}}</h5>
+    </div>
+  </div>
+</body>
+</html>

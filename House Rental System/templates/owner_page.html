@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Owner Page</title>
+</head>
+<style>
+
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+
+body {
+  margin: 0;
+}
+
+
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* etc., ... */
+
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0.146);
+        background-image: url(static/pexels-pixabay-280232.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+    }
+    
+    #house {
+        margin-left: 750px;
+    }
+    
+    .card {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin: 0 auto;
+        width: 70%;
+        /* height: 260px; */
+        margin-top: 60px;
+        margin-bottom: 30px;
+    }
+    
+    .card-header {
+        background-image: linear-gradient(to right, #04AA6D, #04AA6D 50%, #04AA6D 100%);
+        background-color: #04AA6D;
+        color: white;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        font-weight: bold;
+    }
+    
+    .card h2 {
+        margin-top: 0;
+    }
+    
+    .card ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .card ul li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    
+    .card h2 {
+        margin-top: 15px;
+        text-align: left;
+        margin-left: 25px;
+    }
+    
+    .card-header .btn {
+        float: right;
+    }
+    
+    .btn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+    
+    .card-header .list-group-item {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .card-header button {
+        margin-right: 10px;
+    }
+    
+    .card-header .list-group-item span.fw-bold {
+        margin-right: 10px;
+    }
+    
+    .card-header .list-group-item span.fw-bold {
+        display: flex;
+        align-items: center;
+    }
+
+    .interest-request-card {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin: 0 auto;
+        width: 70%;
+        margin-bottom: 30px;
+    }
+
+    .interest-request-card-header {
+        background-color: #04AA6D;
+        color: white;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        font-weight: bold;
+    }
+
+    .interest-request-card-body {
+        padding: 20px;
+    }
+
+    .interest-request-card-body li {
+        margin-bottom: 15px;
+    }
+
+    .interest-request-card-body h3 {
+        margin: 0;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .interest-request-card-body form {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end; /* Align form to the end of the card */
+    }
+
+    .interest-request-card-body form input {
+        display: none;
+    }
+
+    .interest-request-card-body form input[type="submit"] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .interest-request-card-body form input[type="submit"]:hover {
+        background-color: #087753;
+    }
+
+    .interest-request-card-body form a {
+        text-decoration: none;
+        color: #04AA6D;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .tenant-button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .tenant-button:hover {
+        background-color: #087753;
+    }
+
+    /* Modal styling */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .maintenance-card {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin: 0 auto;
+        width:70%;
+        margin-bottom: 30px;
+    }
+
+    .maintenance-card-header {
+        background-color: #04AA6D;
+        color: white;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        font-weight: bold;
+    }
+
+    .maintenance-card-body {
+        padding: 20px;
+    }
+
+    .maintenance-card-body ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .maintenance-card-body li {
+        margin-bottom: 15px;
+    }
+
+    .maintenance-label {
+        font-weight: bold;
+        font-size: 18px;
+        margin-right: 5px;
+    }
+
+    .maintenance-date {
+        color: #04AA6D;
+    }
+
+    .maintenance-subject {
+        color: #6C757D;
+    }
+
+    .maintenance-description {
+        color: #000;
+    }
+
+    .maintenance-card-body form {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center; /* Center the button */
+    }
+
+    .maintenance-card-body form input {
+        display: none;
+    }
+
+    .maintenance-card-body form input[type="submit"] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .maintenance-card-body form input[type="submit"]:hover {
+        background-color: #087753;
+    }
+    .modal-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .modal-buttons form {
+        margin: 0 10px;
+    }
+    .card-header {
+        text-align: center;
+    }
+    .interest-request-card-body{
+        text-align: center;
+    }
+    .maintenance-card-header{
+        text-align: center;
+    }
+    .list-group-item{
+        text-align: center;
+    }
+    .maintenance-card-body{
+        text-align: center;
+    }
+    .interest-request-card-header{
+        text-align: center;
+    }
+    .inline-content h5 {
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed */
+}
+
+
+.maintenance-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+/*  */
+
+.label {
+    flex: 0 0 100px; /* Adjust width as needed */
+    margin-right: 10px; /* Adjust spacing */
+    text-align: left;
+}
+/* Adjust the display to flex and center content */
+
+
+
+.btn-paid {
+    padding: 8px 16px;
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 40px;
+    /* align-items: center; */
+
+}
+/* #Rent{
+    height: 500px;
+} */
+.house-details {
+        border-bottom: 1px solid #ccc; /* Add a border bottom */
+        padding-bottom: 10px; /* Adjust spacing */
+        margin-bottom: 10px; /* Adjust margin */
+        display: flex;
+        justify-content: space-between; /* Align content */
+    }
+
+    .detail, .value {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Adjust alignment */
+        margin: 0;
+        margin-left: 50px; /* Reset margin */
+    }
+
+    .detail h5, .value h5 {
+        margin: 5px 0; /* Adjust label-value gap */
+    }
+
+    .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    text-align: left;
+    display: inline-block;
+    width: 150px; /* Adjust the width as needed */
+    margin-right: 10px;
+ 
+
+}
+
+.value {
+    text-align: left;
+    display: inline-block;
+   
+}
+.payment-details {
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+}
+
+.info-row,
+.action-row {
+  display: flex;
+  justify-content: center;
+}
+
+.location,
+.property-details {
+  display: flex;
+  align-items: center;
+  margin-right:100px;
+  
+
+}
+/* .info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+} */
+.inline-content {
+        margin-bottom: 20px; /* Adjust as needed */
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 10px; /* Provides space below the border */
+    }
+
+    .inline-content:not(:last-child) {
+        border-bottom: 2px solid #ccc;
+    }
+
+
+.btn-paid {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  margin-left: 100%;
+}
+
+    .maintenance-row {
+  margin-left: 10px; /* Adjust as needed for space between divisions */
+}
+
+.description-section {
+  /* Thick border-bottom for the description */
+  padding-bottom: 20px; /* Provides space below the border */
+  /* margin-top: 0px; */
+  margin-bottom: 15px; /* Space after the description */
+}
+.description-section-border{
+    margin-top: 15px;
+    border-bottom: 4px solid #ccc;
+}
+
+.card div h3:first-child {
+        flex-basis: 30%; /* Adjust the width based on your preference */
+        text-align: left;
+        margin-right: 10px;
+        margin-left: 20px;
+    }
+
+    /* For value alignment */
+    .card div h3:last-child {
+        flex-basis: 65%; /* Adjust the width based on your preference */
+        text-align: left;
+    }
+    .card div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    .output-card {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .output-card div {
+        display: flex;
+        margin-bottom: 5px;
+    }
+
+    /* For label alignment */
+    .output-card div h5:first-child {
+        flex-basis: 25%;
+        text-align: left;
+        margin-right: 10px;
+        margin-left: 15px;
+    }
+
+    /* For value alignment */
+    .output-card div h5:last-child {
+        flex-basis: 65%;
+        text-align: left;
+    }
+    .action-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust margin top as needed */
+}
+
+.pay-button-container {
+    text-align: center;
+}
+.payment-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-row {
+    text-align: center;
+    margin-top: 10px; 
+    margin-left: 55%;/* Adjust margin top as needed */
+}
+
+</style>
+<!-- ... (previous code) ... -->
+
+<script>
+  // JavaScript for smooth scrolling to the target card
+  
+
+  // JavaScript to show the modal
+  function showModal() {
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'block';
+  }
+
+  // JavaScript to hide the modal
+  function hideModal() {
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'none';
+  }
+
+
+</script>
+
+<!-- ... (remaining code) ... -->
+
+<body>
+    <div class="overlay"></div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #04AA6D">
+        <div class="container">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" id="Home" style="margin-left: 1050px;">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+     
+    <div class="card" >
+        <div class="card-header">
+            Owner Details
+        </div>
+        <div>
+            <h3>Name:</h3>
+            <h3>{{account[0][3]}}</h3>
+        </div>
+        <div>
+            <h3>Contact Info :</h3>
+            <h3>{{account[0][4]}}</h3>
+        </div>
+        <div>
+            <h3>Username :</h3>
+            <h3>{{account[0][1]}}</h3>
+        </div>
+        
+        <div>
+            <h3>Total House :</h3>
+            <h3>{{total_house}}</h3>
+        </div>
+
+       
+    </div>
+    
+    <div class="card" id="card2">
+        <div class="card-header" id="House_details">
+            House Details
+            <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('house_register',id = account[0][0]) }}'">Register House</button>
+            <!-- <button type="button" class="btn btn-primary">Delete</button> -->
+        </div>
+    
+        <div class="list-group list-group-flush">
+            {% for house in account %}
+                {% if house|length >= 8%}
+                    <ul class="list-group-item" style="margin-bottom: 10px;">
+                        <div class="output-card">
+                            <div>
+                                <h5>Rent:</h5>
+                                <h5>{{house[8]}}</h5>
+                            </div>
+                            <div>
+                                <h5>BHK:</h5>
+                                <h5>{{house[7]}}</h5>
+                            </div>
+                            <div>
+                                <h5>Address:</h5>
+                                <h5>House No :{{house[10]}}, {{house[11]}}, {{house[13]}},{{house[12]}}</h5>
+                            </div>
+                            
+                            <div class="description-section-border">
+                                   
+                            </div>
+                        </div>
+                   
+                    
+                    
+                    </ul>
+                {% else %}
+                    <ul><h5 style="margin-left: 40%;"> No House Registered </h5></ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="card" id="Rent">
+        <div class="card-header">
+            Rent Pending
+        </div>
+        <ul>
+            {% for payment in payment_pending %}
+            <li>
+                {% if payment != "No pending Payments" %}
+                <div class="payment-details">
+                    <div class="info-row">
+                        <div class="location">
+                            <h5>City:</h5>
+                            <h5>{{ payment[6] }}</h5>
+                        </div>
+                        <div class="location">
+                            <h5>State:</h5>
+                            <h5>{{ payment[8] }}</h5>
+                        </div>
+                        <div class="property-details">
+                            <h5>Street:</h5>
+                            <h5>{{ payment[5] }}</h5>
+                        </div>
+                        <div class="property-details">
+                            <h5>Rent:</h5>
+                            <h5>{{ payment[3] }}</h5>
+                        </div>
+                    </div>
+                    <div class="action-row">
+                        <form action="/owner" method="POST">
+                            <input type="text" name="payment" value="{{ payment[11] }}" style="display: none;">
+                            <input type="submit" name="submit" value="paid" class="btn-paid">
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                    <h5 style="margin-left: 3%;">No Pending Payment Found</h5>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+      
+    
+    
+    
+
+    <div class="interest-request-card">
+        <div class="interest-request-card-header">
+            Interested Requests
+        </div>
+        <div class="interest-request-card-body">
+            <ul>
+                {% for house in not_interested %}
+                    {% if house[0] != "No Request Found"%}
+                        <ul>
+                            <div>
+                                <div>
+                                  
+                                    <!-- <h3>{{ house[4:8]|join(' ') }} -->
+                                        <div class="inline-content">
+                                            <h5>House No : {{house[4]}}</h5>
+                                            <h5>City: {{house[6]}}</h5>
+                                            <h5>State: {{house[7]}}</h5>
+                                            <h5>Street: {{house[5]}},</h5>
+                                            <h5>Tenant : <a href="#" class="tenant-button" onclick="showModal();">{{ house[17] }}</a></h5>
+                                        </div>
+
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close" onclick="hideModal();">&times;</span>
+                                            <!-- <h3>{{ house[16:] }}</h3> -->
+                                            <div class="acc-rej">
+                                                <h3>Name:{{house[17]}}</h3>
+                                                <h3>Contact:{{house[20]}}</h3>
+                                                <h3>Age:{{house[19]}}</h3>
+
+                                                <h3>Marital Status: {{house[21]}}</h3>
+                                                <h3>Employee Status:{{house[23]}}</h3>
+                                            </div>
+                                            <div class="modal-buttons">
+                                                <form action="/owner" method="POST">
+                                                    <input type="text" name="accept_data" value="{{house[0]}},{{house[12]}},{{house[13]}}" style="display : none;">
+                                                    <button type="submit" name = "accept" class="btn btn-primary">Accept</button>
+                                                </form>
+                                                <form action="/owner" method="POST">
+                                                    <input type="text" value="{{ house[0] }},{{ house[12] }},{{ house[13] }}" name="reject_data" style="display : none; ">
+                                                    <button type="submit" name = "reject" class="btn btn-danger" onclick="hideModal();">Reject</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </ul>
+                    {% else %}
+                        <h5 style="margin-left: 3%;">No Request Found</h5>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="maintenance-card">
+        <div class="maintenance-card-header">
+            <h4>Maintenance Requests</h4>
+        </div>
+        <div class="maintenance-card-body">
+            <ul>
+                {% for maintenance in maintenance_owner %}
+                    {% if maintenance|length <  8 %}
+                        <h5>{{ maintenance[0] }}</h5>
+                    {% else %}
+                        <li class="maintenance-item">
+                            <div class="maintenance-row"  style="margin-top: 20px;">
+                                <h5 class="label">Date:</h5>
+                                <h5 class="content">{{ maintenance[3] }}</h5>
+                            </div>
+                            <div class="maintenance-row">
+                                <h5 class="label">Address:</h5>
+                                <h5 class="content">{{maintenance[12]}}, {{maintenance[13]}}, {{maintenance[14]}} {{maintenance[16]}} {{maintenance[15]}}</h5>
+                            </div>
+                            <div class="maintenance-row">
+                                <h5 class="label">Subject:</h5>
+                                <h5 class="content">{{ maintenance[4] }}</h5>
+                            </div>
+                            
+                            <div class="maintenance-row description-section">
+                                <h5 class="label">Description:</h5>
+                                <h5 class="content">{{ maintenance[5] }}</h5>
+                            </div>
+                            <div class="maintenance-row">
+                                <div style="text-align: center;"> <!-- Adjusted alignment -->
+                                    <form action="/owner" method="POST" style="display: inline;margin-left: 30rem;"> <!-- Added display inline -->
+                                        <input type="text" value = "{{maintenance[0]}},{{maintenance[1]}},{{maintenance[2]}}" name = "done_data" style="display : none; ">
+                                        <button type="submit" name="done" class="btn btn-primary">Done</button> <!-- Styled as a button -->
+                                    </form>
+                                </div>
+                            </div>
+                            
+                                <div class="description-section-border">
+                                   
+                                </div>
+                               
+                          
+                            
+                            
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    
+    
+    
+</body>
+</html>

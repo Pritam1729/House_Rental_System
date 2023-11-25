@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <style>
+    /* CSS styles for background and card */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url(pexels-pixabay-280232.jpg); 
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); 
+      z-index: -1;
+    }
+
+    .card {
+      background-color: #ffffff;
+      width: 500px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 50px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 1;
+      
+    }
+ 
+    .card-header {
+      background-image: linear-gradient(to right, #04AA6D, #04AA6D 50%, #04AA6D 100%);
+      color: white;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    p.msg {
+      color: red;
+      font-size: 12px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #04AA6D;
+    }
+
+    @media screen and (max-width: 500px) {
+      .card {
+        width: 100%;
+      }
+    }
+
+    label {
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #04AA6D">
+    <div class="container">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);" onclick="scrollToCard2(); " id="house">House</a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('owner',msg = username)}}" id="Home" style="margin-left: 1050px;">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <div class="card">
+    <div class="card-header">
+      House Register
+    </div>
+    <div class="card-body">
+        <form action="/house_register" method="POST">
+            <label for="size">Size (sq m):</label>
+            <input type="text" name="size" id="size" required>
+    
+            <label for="bhk">BHK:</label>
+            <input type="text" name="bhk" id="bhk" required>
+    
+            <label for="rent">Rent Amount:</label>
+            <input type="text" name="rent" id="rent" required>
+    
+            <label for="house_no">House Number:</label>
+            <input type="text" name="house_no" id="house_no" required>
+    
+            <label for="streetname">Street Name:</label>
+            <input type="text" name="streetname" id="streetname">
+    
+            <label for="City">City:</label>
+            <input type="text" name="City" id="City" required>
+    
+            <label for="state">State:</label>
+            <input type="text" name="state" id="state">
+    
+            <label for="pincode">PINCODE:</label>
+            <input type="text" name="pincode" id="pincode"><br>
+    
+            <input type="submit" value="Register">
+          </form>
+    </div>
+    <p>{{msg}}</p>
+  </div>
+</body>
+</html>
